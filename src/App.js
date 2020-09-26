@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import { Container, makeStyles } from "@material-ui/core";
+import ButtonAppBar from "./Components/Navbar";
+import Home from "./Components/Home/Home";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Expenses from "./Components/Expenses/Expenses";
+import PrivateRoute from "./Components/Firebase/PrivateRoute";
+const useStyles = makeStyles({
+  containerStyle: {
+    backgroundColor: "#153e5c",
+    minHeight: "100vh",
+    color: "white",
+    paddingTop: "20px",
+  },
+});
 function App() {
+  const classes = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <ButtonAppBar />
+        <Container className={classes.containerStyle} maxWidth="xl">
+          <Switch>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <PrivateRoute component={Expenses} />
+          </Switch>
+        </Container>
+      </BrowserRouter>
+    </>
   );
 }
 
