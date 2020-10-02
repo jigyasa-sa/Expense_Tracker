@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -9,6 +9,9 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { useHistory } from "react-router-dom";
 import { FirebaseContext } from "../Firebase/init";
 import { usercontext } from "../Firebase/UserContext";
+import SwitchUI from "@material-ui/core/Switch";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { CustomThemeContext } from "../Themes/customThemeProvider";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -29,6 +32,16 @@ export default function ButtonAppBar() {
   const history = useHistory();
   const firebase = React.useContext(FirebaseContext);
   const user = React.useContext(usercontext);
+  const { currentTheme, setTheme } = useContext(CustomThemeContext);
+  const isDark = Boolean(currentTheme === "dark");
+  const handleThemeChange = (event) => {
+    const { checked } = event.target;
+    if (checked) {
+      setTheme("dark");
+    } else {
+      setTheme("normal");
+    }
+  };
   console.log(firebase);
   return (
     <div className={classes.root}>
@@ -45,6 +58,14 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             EXPENSE TRACKER
           </Typography>
+          <Button>
+            <FormControlLabel
+              control={
+                <SwitchUI checked={isDark} onChange={handleThemeChange} />
+              }
+              label="Theme"
+            />
+          </Button>
           <Button
             color="inherit"
             className={classes.button}

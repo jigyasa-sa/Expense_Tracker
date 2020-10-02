@@ -1,9 +1,9 @@
 import React from "react";
 import { Paper, makeStyles, Grid, Typography } from "@material-ui/core";
 import { usercontext } from "../Firebase/UserContext";
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   paperStyle: {
-    backgroundColor: "#52d2a9",
+    //backgroundColor: theme.palette.primary.main,
     minHeight: "100vh",
     color: "white",
     padding: "10px",
@@ -11,13 +11,13 @@ const useStyles = makeStyles({
   aboutSection: {
     textAlign: "center",
     padding: "10px 50px 10px 50px",
-    backgroundColor: "#f2be54",
+    //backgroundColor: theme.palette.secondary.main,
     margin: "20px 10px 20px 10px",
   },
   desp: {
     margin: "20px 10px 20px 10px",
   },
-});
+}));
 export default function Home() {
   const classes = useStyles();
   const user = React.useContext(usercontext);

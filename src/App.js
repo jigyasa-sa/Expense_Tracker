@@ -5,6 +5,8 @@ import Home from "./Components/Home/Home";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Expenses from "./Components/Expenses/Expenses";
 import PrivateRoute from "./Components/Firebase/PrivateRoute";
+//import { CustomThemeContext } from "./Components/Themes/customThemeProvider";
+
 const useStyles = makeStyles({
   containerStyle: {
     backgroundColor: "#153e5c",
@@ -15,6 +17,7 @@ const useStyles = makeStyles({
 });
 function App() {
   const classes = useStyles();
+
   return (
     <>
       <BrowserRouter>
